@@ -1,3 +1,4 @@
+import config from '@config/config';
 import {
   CanActivate,
   ExecutionContext,
@@ -8,7 +9,6 @@ import {
 import { ConfigType } from '@nestjs/config';
 import { Reflector } from '@nestjs/core';
 import { Observable } from 'rxjs';
-import config from 'src/config/config';
 
 @Injectable()
 export class ApiSecretGuard implements CanActivate {

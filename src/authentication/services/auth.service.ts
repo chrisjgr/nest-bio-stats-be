@@ -7,11 +7,11 @@ import {
 import { DeepPartial, Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
+import { InjectRepository } from '@nestjs/typeorm';
 
 import { User, Profile } from '../entities';
 import { LoginUserDto, CreateUserDto } from '../dto';
 import { JwtPayload } from '../models/jwt-payload.interface';
-import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class AuthService {

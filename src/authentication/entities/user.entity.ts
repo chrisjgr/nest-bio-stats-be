@@ -2,22 +2,17 @@ import {
   Column,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Profile } from './profile.entity';
+import { Plants } from '@app/plants/entities/plants.entity';
 
 @Entity('users')
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
-
-  /* 
-      @Column('text', {
-    unique: true,
-  })
-  userEmail: string;
-  */
 
   @Column('text', {
     select: false,
@@ -28,16 +23,6 @@ export class User {
   @JoinColumn()
   profile: Profile;
 
-  /* 
-      @BeforeInsert()
-  checkFieldsBeforeInsert() {
-    this.userEmail = this.userEmail.toLowerCase().trim();
-  }
-
-    @BeforeUpdate()
-  checkFieldsBeforeUpdate() {
-    this.checkFieldsBeforeInsert();
-  }
-
-  */
+  @OneToMany(() => Plants, (plants) => plants.user, { cascade: ['recover'] })
+  plants: Plants[];
 }

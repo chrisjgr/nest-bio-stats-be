@@ -18,10 +18,11 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@auth/*":["src/auth/*"],
+      "@auth/*":["src/authentication/*"],
       "@common/*":["src/common/*"],
       "@config/*":["src/config/*"],
       "@database/*":["src/database/*"],
+      "@app/*":["src/app/*"],
     }
   }
 }
