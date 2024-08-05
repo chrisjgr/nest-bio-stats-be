@@ -10,6 +10,7 @@ import {
 } from './entities';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { PlantsService } from './services/plants.service';
 
 @Module({
   imports: [
@@ -25,7 +26,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     ]),
   ],
   controllers: [],
-  providers: [],
+  providers: [PlantsService],
   exports: [TypeOrmModule],
 })
 export class PlantsModule {}
