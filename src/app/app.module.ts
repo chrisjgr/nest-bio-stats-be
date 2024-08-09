@@ -6,10 +6,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PlantsModule } from './plants/plants.module';
 import { CountriesModule } from './countries/countries.module';
+import { DatabaseModule } from '../database/database.module';
 
 @Module({
   imports: [
     ConfigModule,
+    DatabaseModule,
     AppConfigModule,
     AuthModule,
     CountriesModule,
