@@ -15,5 +15,8 @@ export const postgresConnection = async (
     database,
     autoLoadEntities: true,
     synchronize: true,
+    ssl: {
+      rejectUnauthorized: false,
+    },
   } as TypeOrmModuleOptions;
 };
