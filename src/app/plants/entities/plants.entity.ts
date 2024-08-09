@@ -5,10 +5,8 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Sensors } from './sensors';
 
 @Entity('plants')
 export class Plants {
@@ -18,8 +16,20 @@ export class Plants {
   @Column('text')
   name: string;
 
-  @Column('timestamp', { default: new Date() })
-  planting_date: Date;
+  @Column('float', { name: 'red_alerts_quantity' })
+  redAlertsQuantity: number;
+
+  @Column('float', { name: 'yellow_alerts_quantity' })
+  yellowAlertsQuantity: number;
+
+  @Column('float', { name: 'ok_reads_quantity' })
+  okReadsQuantity: number;
+
+  @Column('float', { name: 'disabled_sensors_quantity' })
+  disabledSensorsQuantity: number;
+
+  @Column('timestamp', { name: 'planting_date', default: new Date() })
+  plantingDate: Date;
 
   // * Relations
   @ManyToOne(() => Country, (country) => country.plants, {
@@ -33,9 +43,4 @@ export class Plants {
   })
   @JoinColumn({ name: 'user_id' })
   user: User;
-
-  @OneToMany(() => Sensors, (sensors) => sensors.plants, {
-    cascade: ['recover'],
-  })
-  sensors: Sensors[];
 }

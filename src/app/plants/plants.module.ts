@@ -1,31 +1,13 @@
 import { Module } from '@nestjs/common';
-import {
-  Alerts,
-  AlertStatus,
-  AlertType,
-  Plants,
-  Sensors,
-  SensorStatus,
-  SensorType,
-} from './entities';
+import { Plants } from './entities';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PlantsService } from './services/plants.service';
+import { PlantsController } from './controllers/plants.controller';
 
 @Module({
-  imports: [
-    ConfigModule,
-    TypeOrmModule.forFeature([
-      Plants,
-      Sensors,
-      SensorStatus,
-      SensorType,
-      Alerts,
-      AlertStatus,
-      AlertType,
-    ]),
-  ],
-  controllers: [],
+  imports: [ConfigModule, TypeOrmModule.forFeature([Plants])],
+  controllers: [PlantsController],
   providers: [PlantsService],
   exports: [TypeOrmModule],
 })
