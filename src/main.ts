@@ -16,11 +16,6 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
-  app.enableCors({
-    origin: '*', // Permite todas las solicitudes de cualquier origen
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    allowedHeaders: 'Content-Type, Accept, Authorization',
-  });
 
   const config = new DocumentBuilder()
     .setTitle('Bio stats RESTFul API')
@@ -30,6 +25,12 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
+
+  app.enableCors({
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    allowedHeaders: '*', // Permite todos los encabezados
+  });
 
   await app.listen(process.env.PORT);
   logger.log(`App running on port ${process.env.PORT}`);
