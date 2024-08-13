@@ -6,13 +6,14 @@ import {
   Get,
   Param,
   Patch,
+  Post,
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { PlantsService } from '../services/plants.service';
 import { GetUser } from '@auth/decorators/get-user.decorator';
 import { User } from '@auth/entities';
-import { UpdatePlantDto } from '../dto';
+import { CreatePlantDto, UpdatePlantDto } from '../dto';
 
 @Controller('plants')
 @UseGuards(ApiSecretGuard, AuthGuard())
@@ -43,5 +44,13 @@ export class PlantsController {
   @Delete(':id')
   deletePlant(@Param('id') id: string) {
     return this.plantsService.deletePlant({ plantId: id });
+  }
+
+  @Post()
+  createPlant(@Body() createPlantDto: CreatePlantDto, @GetUser() user: User) {
+    return this.plantsService.createPlant({
+      ...createPlantDto,
+      userId: user.id,
+    });
   }
 }

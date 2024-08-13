@@ -2,7 +2,6 @@ import { IsNotEmpty, IsNumber, IsString, IsUUID } from 'class-validator';
 
 export class CreatePlantDto {
   @IsString()
-  @IsNotEmpty()
   @IsUUID()
   userId: string;
 
